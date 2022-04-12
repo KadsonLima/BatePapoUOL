@@ -23,6 +23,4 @@ function retorn(url) {
     })
 }
 
-
-
-//// esse é main
+// Agora é o checkout
