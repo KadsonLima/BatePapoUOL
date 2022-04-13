@@ -38,7 +38,9 @@ function keepConect() {
 people.addEventListener('click', e => {
     document.querySelector(".participants").classList.remove("hidden")
 });
-
+document.querySelector(".border-gray").addEventListener('click', e => {
+    document.querySelector(".participants").classList.add("hidden")
+});
 function searchMsg() {
     let promise = axios.get(url + 'messages')
     promise.then(response => {
