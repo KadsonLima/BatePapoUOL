@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    
+
     <div class="container">
         <div class="header">
             <img src="assets/logo 1.png" alt="">
@@ -27,14 +27,35 @@
         </div>
         <div class="footer">
             <input type="text" placeholder="Escreva aqui..." name="" id="">
-            <ion-icon onclick="sendMessage()"size="large" name="paper-plane-outline"></ion-icon>
+            <ion-icon onclick="sendMessage()" size="large" name="paper-plane-outline"></ion-icon>
         </div>
     </div>
     <div class="participants hidden">
         <div class="border-gray"></div>
         <div class="lateral-pag">
-            <h3>Escolha um contato para enviar mensagem:</h3>
-            <a></a>
+            <div class="bar private">
+                <h3>Escolha um contato para enviar mensagem:</h3>
+                <div class="usrs">
+                    <div class="usr todos">
+                        <ion-icon name="people"></ion-icon>
+                        Todos
+                    </div>
+                </div>
+            </div>
+            <div class="bar visibily">
+                <h3>Escolha a visibilidade:</h3>
+                <div class="reserv">
+                    <div class="usr lock">
+                        <ion-icon name="lock-open"></ion-icon>
+                        Público
+                    </div>
+                    <div class="usr unlock">
+                        <ion-icon name="lock-closed"></ion-icon>
+                        Reservadamente
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
     <div class="telaloguin">
