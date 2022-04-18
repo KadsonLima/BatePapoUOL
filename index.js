@@ -70,13 +70,15 @@ function renderizChat() {
         <div class="name">${e.to}:</div>
         <div class="msg">${e.text}</div>
     </div>`
-        } else if (e.type == 'private_message') {
+        } else if (e.type == 'private_message' && e.to == usuario.name) {
             conversa.innerHTML += `<div class="mensagem reservadamente">
         <div class="hora">(${converteHr(e.time)})</div>
         <div class="name">${e.from}</div>reservadamente para
         <div class="name">${e.to}:</div>
         <div class="msg">${e.text}</div>
     </div>`
+        }else{
+            console.log ("erro")
         }
     })
 }
@@ -99,7 +101,7 @@ function sendMessage() {
             console.log('tdcerto')
             document.querySelector(".footer input").value = '';
         })
-
+    lastMessage();
 
 }
 let participants;
