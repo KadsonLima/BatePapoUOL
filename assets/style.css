@@ -159,6 +159,7 @@ ion-icon {
     align-items: center;
     height: 31px;
     margin-bottom: 13px;
+    cursor: pointer;
 }
 .bar h3 {
     height: 66px;
@@ -170,4 +171,19 @@ ion-icon {
 .bar ion-icon{
     margin-right: 8px;
     font-size: 35px ;
+}.reservadamente{
+    background-color: #FFDEDE;
+}.usr:hover{
+    background-color: #817c7c2c;
+    border-radius: 10px;
+    transition: 0.5s linear;
+}
+
+.set-down{
+    font-size: 45px;
+    right: 10px;
+    bottom: 100px;
+    position: fixed;
+    z-index: 2;
+    color: chocolate;
 }

@@ -20,7 +20,6 @@ function conectarChat() {
         document.querySelector(".telaloguin").classList.add("hidden");
         searchMsg();
         keepConect();
-
     }).catch(e => {
         if (e.response.status == 400) {
             alert("Tente outro nome!");
@@ -31,7 +30,7 @@ function keepConect() {
     intervalo = setInterval(() => {
         let promise = axios.post(url + 'status', { name: usr });
         promise.then(function () {
-
+        searchMsg()
             //console.log("estou conectado")
         })
     }, 4000);
@@ -47,23 +46,34 @@ document.querySelector(".border-gray").addEventListener('click', e => {
 function searchMsg() {
     let promise = axios.get(url + 'messages')
     promise.then(response => {
-        pessoas = response.data
+
+        pessoas = response.data;
+
+
+
         renderizChat();
     })
 }
 function renderizChat() {
     conversa.innerHTML = ''
     pessoas.forEach(e => {
-        if (e.text == "entra na sala..." || e.text == "sai da sala...") {
+        if (e.type == "status") {
             conversa.innerHTML += `<div class="mensagem entry">
-            <div class="hora">(${e.time})</div>
+            <div class="hora">(${converteHr(e.time)})</div>
             <div class="name">${e.from}</div>
             <div class="msg">${e.text}</div>
     </div>`
-        } else {
+        } else if (e.type == "message") {
             conversa.innerHTML += `<div class="mensagem">
-        <div class="hora">(${e.time})</div>
+        <div class="hora">(${converteHr(e.time)})</div>
         <div class="name">${e.from}</div>para
+        <div class="name">${e.to}:</div>
+        <div class="msg">${e.text}</div>
+    </div>`
+        } else if (e.type == 'private_message') {
+            conversa.innerHTML += `<div class="mensagem reservadamente">
+        <div class="hora">(${converteHr(e.time)})</div>
+        <div class="name">${e.from}</div>reservadamente para
         <div class="name">${e.to}:</div>
         <div class="msg">${e.text}</div>
     </div>`
@@ -87,6 +97,7 @@ function sendMessage() {
         .then((response) => {
             searchMsg();
             console.log('tdcerto')
+            document.querySelector(".footer input").value = '';
         })
 
 
@@ -100,16 +111,34 @@ function optionChat() {
 </div>`
     axios.get(url + "participants")
         .then((response) => {
-        participants = response.data;
-        participants.forEach(e=>{
-            usuarios.innerHTML += `<div class="usr ${e.name}">
+            participants = response.data;
+            participants.forEach(e => {
+                usuarios.innerHTML += `<div class="usr ${e.name}">
             <ion-icon name="person-circle-outline"></ion-icon>
             ${e.name}
         </div>`
+            })
         })
-    })
-    
-    
+
+
 }
 
+function converteHr(hora) {
+    hrSplit = hora.split(":")
+    hrConvert = parseInt(hrSplit[0] - 3);
+    if (hrConvert < 10) { hrConvert = "0" + hrConvert }
+    hrSplit[0] = hrConvert
+    return hrSplit.join(':')
+}
+
+function lastMessage(){
+
+    const mensagems = document.querySelector(".conversa");
+
+    mensagems.lastElementChild.scrollIntoView();
+}
+
+function changPrivateMessage(){
+    
+}
 // Agora é o checkout
