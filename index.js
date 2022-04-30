@@ -10,7 +10,7 @@ let pessoas = [];
 let usr = document.querySelector(".nome").value;
 const usuario = { name: usr }
 
-
+let teste;
 
 function conectarChat() {
     usr = document.querySelector(".nome").value;
